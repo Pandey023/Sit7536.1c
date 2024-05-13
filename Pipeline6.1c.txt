@@ -39,15 +39,11 @@ pipeline {
             }
         }
     }
-    post {
+   post {
         always {
             // Send notification emails at the end of test and security scan stages
-                mail to: 'lakshitpandey7@gmail.com',
-                subject: "${currentBuild.result}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: "${currentBuild.result}: ${env.JOB_NAME} #${env.BUILD_NUMBER}\n\nCheck console output at ${env.BUILD_URL} to view logs. "
-                
-                // emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, 
-                //          subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'sumitsaini341@gmail.com'
+                emailext attachLog: true, body: "${currentBuild.result}: ${BUILD_URL}", compressLog: true, 
+                         subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}", to: 'lakshitpandey7@gmail.com'
                 }
                 
     }
